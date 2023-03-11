@@ -1668,7 +1668,7 @@ namespace TRACT{
   }
 
 
-  /* void Counter::save_lengths(){
+   void Counter::save_lengths(){
     string filename=logger.appendDir("saved_lengths.txt");
     ofstream of(filename.c_str());
     if (of.is_open()){
@@ -1682,7 +1682,7 @@ namespace TRACT{
     else{
       cerr<<"Counter::save_paths:error opening file for writing: "<<filename<<endl;
     }
-  } */
+  } 
 
 
   void Counter::update_seedcounts(){
@@ -2187,7 +2187,7 @@ namespace TRACT{
     }
     if(opts.save_paths.value())
       save_paths();
-      //save_lengths();
+      save_lengths();
     if(opts.s2tout.value()){
       save_seedcounts();
     }
