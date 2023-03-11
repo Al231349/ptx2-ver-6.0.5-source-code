@@ -1667,10 +1667,7 @@ namespace TRACT{
     }
   }
 
-  void Counter::add_length(int seed_idx,int target_idx,int length){
-    vector<int> current_vec = {seed_index,target_index,length};
-    m_save_lengths.push_back(current_vec)
-  }
+
   void Counter::save_lengths(){
     string filename=logger.appendDir("saved_lengths.txt");
     ofstream of(filename.c_str());
@@ -1885,7 +1882,10 @@ namespace TRACT{
       }
       if(connect){
         m_ConMat1->AddTo(m_curloc.loc+1,locs[j].first+1,locs[j].second.value);
-        add_length(m_curloc.loc+1,locs[j].first+1,static_cast<int>(locs[j].second.value)); //3/10/23 Call add_length and pass in what seems to be seed idx,target idx,and length
+        //3/10/23 addition - create int vector 
+        vector<int> current_vec = {m_curloc.loc+1,locs[j].first+1,static_cast<int>(locs[j].second.value)};
+        m_saved_lengths.push_back(current_vec); //3/10/23 Call add_length and pass in what seems to be seed idx,target idx,and length
+
         if(opts.omeanpathlength.value()) m_ConMat1b->AddTo(m_curloc.loc+1,locs[j].first+1,1);
       }
     }
