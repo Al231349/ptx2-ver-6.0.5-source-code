@@ -1649,7 +1649,7 @@ namespace TRACT{
     m_save_paths.push_back(m_path);
   }
   void Counter::save_paths(){
-    string filename=logger.appendDir("saved_paths.txt");
+    string filename=logger.appendDir("saved_paths_testing.txt");
     ofstream of(filename.c_str());
     if (of.is_open()){
       for(unsigned int i=0;i<m_save_paths.size();i++){
@@ -1668,7 +1668,7 @@ namespace TRACT{
   }
 
 
-  void Counter::save_lengths(){
+  /* void Counter::save_lengths(){
     string filename=logger.appendDir("saved_lengths.txt");
     ofstream of(filename.c_str());
     if (of.is_open()){
@@ -1682,7 +1682,7 @@ namespace TRACT{
     else{
       cerr<<"Counter::save_paths:error opening file for writing: "<<filename<<endl;
     }
-  }
+  } */
 
 
   void Counter::update_seedcounts(){
@@ -1883,13 +1883,13 @@ namespace TRACT{
       if(connect){
         m_ConMat1->AddTo(m_curloc.loc+1,locs[j].first+1,locs[j].second.value);
         //3/10/23 addition - create int vector 
-        vector<ColumnVector> current_vec;
+        /*vector<ColumnVector> current_vec;
         current_vec[1] = m_curloc.loc+1;
         current_vec[2] = locs[j].first+1;
-        current_vec[1] = locs[j].second.value;
+        current_vec[3] = locs[j].second.value;
 
         m_save_lengths.push_back(current_vec); 
-
+        */
         if(opts.omeanpathlength.value()) m_ConMat1b->AddTo(m_curloc.loc+1,locs[j].first+1,1);
       }
     }
@@ -2187,7 +2187,7 @@ namespace TRACT{
     }
     if(opts.save_paths.value())
       save_paths();
-      save_lengths();
+      //save_lengths();
     if(opts.s2tout.value()){
       save_seedcounts();
     }
