@@ -582,6 +582,7 @@ namespace TRACT{
     volume<float>                m_lastpoint; // store last point in trajectory
 
     vector< vector<ColumnVector> > m_save_paths;
+    vector< vector<int> > m_save_lengths;  //3/10/2023 Added to hold all individual streamline length values - output to text file
 
     // do we still need these?
     vector<ColumnVector>         m_seedcounts;
