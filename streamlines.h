@@ -786,6 +786,9 @@ namespace TRACT{
 
     void add_path();
     void save_paths();
+
+    void add_length(int seed_idx,int target_idx,int length);
+    void save_lengths();
     
   };
   
