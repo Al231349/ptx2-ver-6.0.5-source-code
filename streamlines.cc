@@ -1668,13 +1668,16 @@ namespace TRACT{
   }
 
 
-   void Counter::save_lengths(){
+  void Counter::save_lengths(){
     string filename=logger.appendDir("saved_lengths.txt");
     ofstream of(filename.c_str());
     if (of.is_open()){
       for(unsigned int i=0;i<m_save_lengths.size();i++){
         stringstream flot;
-        flot << m_save_lengths[i][1] << " " << m_save_lengths[i][2] << " " << m_save_lengths[i][3] << endl;
+        flot << "# " << m_save_lengths[i].size()<<endl;
+        for(unsigned int j=0;j<m_save_lengths[i].size();j++){
+          flot << m_save_lengths[i][j](1) << " " << m_save_lengths[i][j](2) << " " << m_save_lengths[i][j](3) << endl;
+        }
         of<<flot.str();
       }
       of.close();
@@ -1682,7 +1685,7 @@ namespace TRACT{
     else{
       cerr<<"Counter::save_paths:error opening file for writing: "<<filename<<endl;
     }
-  } 
+  }
 
 
   void Counter::update_seedcounts(){
@@ -1883,7 +1886,7 @@ namespace TRACT{
       if(connect){
         m_ConMat1->AddTo(m_curloc.loc+1,locs[j].first+1,locs[j].second.value);
         //3/10/23 addition - create int vector 
-        vector<float> current_vec;
+        vector<ColumnVector> current_vec;
         current_vec[1] = m_curloc.loc+1;
         current_vec[2] = locs[j].first+1;
         current_vec[3] = locs[j].second.value;
