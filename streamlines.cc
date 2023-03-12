@@ -1882,8 +1882,13 @@ namespace TRACT{
       }
       if(connect){
         m_ConMat1->AddTo(m_curloc.loc+1,locs[j].first+1,locs[j].second.value);
-        //3/10/23 addition - create int vector 
-        vector<float> current_vect{ m_curloc.loc+1, locs[j].first+1, locs[j].second.value };
+        //3/11/23 addition - create float vector 
+        std::vector<float> current_vect;
+        current_vect.reserve(3);
+        current_vect.push_back(m_curloc.loc+1)
+        current_vect.push_back(locs[j].first+1)
+        current_vect.push_back(locs[j].second.value)
+
 
         m_save_lengths.push_back(current_vect); 
         
