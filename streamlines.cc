@@ -1674,7 +1674,10 @@ namespace TRACT{
     if (of.is_open()){
       for(unsigned int i=0;i<m_save_lengths.size();i++){
         stringstream flot;
-        flot << m_save_lengths[i][1] << " " << m_save_lengths[i][2] << " " << m_save_lengths[i][3] << endl;
+        flot << "# " << m_save_lengths[i].size()<<endl;
+        for(unsigned int j=0;j<m_save_lengths[i].size();j++){
+          flot << m_save_lengths[i][j][1] << " " << m_save_lengths[i][j][2] << " " << m_save_lengths[i][j][3] << endl;
+        }
         of<<flot.str();
       }
       of.close();
