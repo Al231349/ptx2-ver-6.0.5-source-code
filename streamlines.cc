@@ -1883,13 +1883,13 @@ namespace TRACT{
       if(connect){
         m_ConMat1->AddTo(m_curloc.loc+1,locs[j].first+1,locs[j].second.value);
         //3/10/23 addition - create int vector 
-        /*vector<ColumnVector> current_vec;
+        vector<float> current_vec;
         current_vec[1] = m_curloc.loc+1;
         current_vec[2] = locs[j].first+1;
         current_vec[3] = locs[j].second.value;
 
         m_save_lengths.push_back(current_vec); 
-        */
+        
         if(opts.omeanpathlength.value()) m_ConMat1b->AddTo(m_curloc.loc+1,locs[j].first+1,1);
       }
     }
