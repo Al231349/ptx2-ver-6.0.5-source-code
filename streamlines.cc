@@ -1674,10 +1674,7 @@ namespace TRACT{
     if (of.is_open()){
       for(unsigned int i=0;i<m_save_lengths.size();i++){
         stringstream flot;
-        flot << "# " << m_save_lengths[i].size()<<endl;
-        for(unsigned int j=0;j<m_save_lengths[i].size();j++){
-          flot << m_save_lengths[i][j][1] << " " << m_save_lengths[i][j][2] << " " << m_save_lengths[i][j][3] << endl;
-        }
+        flot << m_save_lengths[i][0] << " " << m_save_lengths[i][1] << " " << m_save_lengths[i][2] << endl;
         of<<flot.str();
       }
       of.close();
@@ -1888,9 +1885,9 @@ namespace TRACT{
         //3/11/23 addition - create float vector 
         std::vector<float> current_vect;
         current_vect.reserve(3);
-        current_vect.push_back(m_curloc.loc+1)
-        current_vect.push_back(locs[j].first+1)
-        current_vect.push_back(locs[j].second.value)
+        current_vect.push_back(m_curloc.loc+1);
+        current_vect.push_back(locs[j].first+1);
+        current_vect.push_back(locs[j].second.value);
 
 
         m_save_lengths.push_back(current_vect); 
