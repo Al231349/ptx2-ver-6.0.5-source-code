@@ -62,6 +62,7 @@
     University, to negotiate a licence. Contact details are:
     fsl@innovation.ox.ac.uk quoting Reference Project 9564, FSL.*/
 #include <fstream>
+#include <iostream> //4/1 addition. Should be part of standard c++ library 
 #ifndef EXPOSE_TREACHEROUS
 #define EXPOSE_TREACHEROUS
 #endif

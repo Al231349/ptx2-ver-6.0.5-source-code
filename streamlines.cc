@@ -1680,8 +1680,23 @@ namespace TRACT{
       of.close();
     }
     else{
-      cerr<<"Counter::save_paths:error opening file for writing: "<<filename<<endl;
+      cerr<<"Counter::save_lengthss:error opening file for writing: "<<filename<<endl;
     }
+
+    // 4/1 addition - attempt to save individual lengths as binary, test if faster to parse 
+    // Create in correct directory and open the binary file for writing
+    string filename=logger.appendDir("saved_lengths.bin");
+    ofstream binaryFile(filename.c_str(), ios::out | ios::binary);
+
+    if (binaryFile.is_open()){
+      for(unsigned int i=0;i<m_save_lengths.size();i++){
+        binaryFile.write(reinterpret_cast<const char*>(&m_save_lengths[i][0]), sizeof(int));
+        binaryFile.write(reinterpret_cast<const char*>(&m_save_lengths[i][1]), sizeof(int));
+        binaryFile.write(reinterpret_cast<const char*>(&m_save_lengths[i][2]), sizeof(float));
+      }
+      binaryFile.close();
+    }
+
   }
 
 
