@@ -1685,8 +1685,8 @@ namespace TRACT{
 
     // 4/1 addition - attempt to save individual lengths as binary, test if faster to parse 
     // Create in correct directory and open the binary file for writing
-    string filename=logger.appendDir("saved_lengths.bin");
-    ofstream binaryFile(filename.c_str(), ios::out | ios::binary);
+    string filename_bin=logger.appendDir("saved_lengths.bin");
+    ofstream binaryFile(filename_bin.c_str(), ios::out | ios::binary);
 
     if (binaryFile.is_open()){
       for(unsigned int i=0;i<m_save_lengths.size();i++){
