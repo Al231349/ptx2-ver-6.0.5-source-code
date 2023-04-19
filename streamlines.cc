@@ -1656,7 +1656,7 @@ namespace TRACT{
         stringstream flot;
         flot << "# " << m_save_paths[i].size()<<endl;
         for(unsigned int j=0;j<m_save_paths[i].size();j++){
-          flot << m_save_paths[i][j](1) << " " << m_save_paths[i][j](2) << " " << m_save_paths[i][j](3) << endl;
+          flot << m_save_paths[i][j](1) << " " << m_save_paths[i][j](2) << " " << m_save_paths[i][j](3) << endl; //Why are skipping first index here?
         }
         of<<flot.str();
       }
@@ -1664,6 +1664,32 @@ namespace TRACT{
     }
     else{
       cerr<<"Counter::save_paths:error opening file for writing: "<<filename<<endl;
+    }
+
+
+    
+
+    // 4/19 addition - saving saved_paths as .bin files
+
+    // Create in correct directory and open the binary file for writing
+    string filename_bin=logger.appendDir("saved_paths.bin");
+    ofstream binaryFile(filename_bin.c_str(), ios::out | ios::binary);
+    char hashtag = '#';
+
+    if (binaryFile.is_open()){
+      for(unsigned int i=0;i<m_save_paths.size();i++){
+        binaryFile.write(reinterpret_cast<const char*>(&hashtag), sizeof(char));
+        binaryFile.write(reinterpret_cast<const char*>(&m_save_paths[i].size()), sizeof(unsigned int));
+        for(unsigned int j=0;j<m_save_paths[i].size();j++){
+          binaryFile.write(reinterpret_cast<const char*>(&m_save_paths[i][j](1)), sizeof(float));
+          binaryFile.write(reinterpret_cast<const char*>(&m_save_paths[i][j](2)), sizeof(float)); 
+          binaryFile.write(reinterpret_cast<const char*>(&m_save_paths[i][j](3)), sizeof(float));
+        }
+      }
+      binaryFile.close();
+    }
+    else {
+      cerr << "Error opening file for writing: " << filename_bin << endl;
     }
   }
 
@@ -1690,8 +1716,8 @@ namespace TRACT{
 
     if (binaryFile.is_open()){
       for(unsigned int i=0;i<m_save_lengths.size();i++){
-        binaryFile.write(reinterpret_cast<const char*>(&m_save_lengths[i][0]), sizeof(int));
-        binaryFile.write(reinterpret_cast<const char*>(&m_save_lengths[i][1]), sizeof(int));
+        binaryFile.write(reinterpret_cast<const char*>(&m_save_lengths[i][0]), sizeof(int)); //Note: these are being saved as floats for some reason
+        binaryFile.write(reinterpret_cast<const char*>(&m_save_lengths[i][1]), sizeof(int)); //Also being saved as floats
         binaryFile.write(reinterpret_cast<const char*>(&m_save_lengths[i][2]), sizeof(float));
       }
       binaryFile.close();
