@@ -1667,8 +1667,7 @@ namespace TRACT{
     }
 
 
-    
-
+    /*
     // 4/19 addition - saving saved_paths as .bin files
 
     // Create in correct directory and open the binary file for writing
@@ -1692,6 +1691,7 @@ namespace TRACT{
     else {
       cerr << "Error opening file for writing: " << filename_bin << endl;
     }
+    */
   }
 
 
