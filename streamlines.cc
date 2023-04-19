@@ -1679,7 +1679,8 @@ namespace TRACT{
     if (binaryFile.is_open()){
       for(unsigned int i=0;i<m_save_paths.size();i++){
         binaryFile.write(reinterpret_cast<const char*>(&hashtag), sizeof(char));
-        binaryFile.write(reinterpret_cast<const char*>(&m_save_paths[i].size()), sizeof(unsigned int));
+        unsigned int path_size = m_save_paths[i].size();
+        binaryFile.write(reinterpret_cast<const char*>(&path_size), sizeof(unsigned int));
         for(unsigned int j=0;j<m_save_paths[i].size();j++){
           binaryFile.write(reinterpret_cast<const char*>(&m_save_paths[i][j](1)), sizeof(float));
           binaryFile.write(reinterpret_cast<const char*>(&m_save_paths[i][j](2)), sizeof(float)); 
