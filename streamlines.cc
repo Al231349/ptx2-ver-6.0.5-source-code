@@ -1667,7 +1667,7 @@ namespace TRACT{
     }
 
 
-    /*
+    
     // 4/19 addition - saving saved_paths as .bin files
 
     // Create in correct directory and open the binary file for writing
@@ -1681,9 +1681,13 @@ namespace TRACT{
         //unsigned int path_size = m_save_paths[i].size();
         //binaryFile.write(reinterpret_cast<const char*>(&path_size), sizeof(unsigned int));
         for(unsigned int j=0;j<m_save_paths[i].size();j++){
-          binaryFile.write(reinterpret_cast<const char*>(&m_save_paths[i][j](1)), sizeof(float));
-          binaryFile.write(reinterpret_cast<const char*>(&m_save_paths[i][j](2)), sizeof(float)); 
-          binaryFile.write(reinterpret_cast<const char*>(&m_save_paths[i][j](3)), sizeof(float));
+          float x_coord = static_cast<float>(m_save_paths[i][j](1))
+          float y_coord = static_cast<float>(m_save_paths[i][j](2))
+          float z_coord = static_cast<float>(m_save_paths[i][j](3))
+
+          binaryFile.write(reinterpret_cast<const char*>(&x_coord), sizeof(float));
+          binaryFile.write(reinterpret_cast<const char*>(&y_coord), sizeof(float)); 
+          binaryFile.write(reinterpret_cast<const char*>(&z_coord), sizeof(float));
         }
       }
       binaryFile.close();
@@ -1691,7 +1695,7 @@ namespace TRACT{
     else {
       cerr << "Error opening file for writing: " << filename_bin << endl;
     }
-    */
+    
   }
 
 
